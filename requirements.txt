@@ -1,0 +1,94 @@
+--extra-index-url https://mirrors.cloud.tencent.com/pypi/simple/
+--extra-index-url https://mirrors.aliyun.com/pypi/simple
+
+# ============================================================
+#  适配 ROCm + Python 3.12 的修改版 requirements
+#  原始版本见 requirements.txt.bak
+# ============================================================
+
+# Build Tools
+ninja==1.11.1.1
+pybind11==2.13.4
+
+# Core ML/Deep Learning
+transformers==4.46.0
+diffusers==0.30.0
+accelerate==1.1.1
+pytorch-lightning==1.9.5
+huggingface-hub==0.30.2
+safetensors==0.4.4
+
+# Scientific Computing
+# [修改] 原 numpy==1.24.4 不支持 Python 3.12，升级到 1.26.4
+numpy==1.26.4
+scipy==1.14.1
+einops==0.8.0
+pandas==2.2.2
+
+# Computer Vision & Image Processing
+opencv-python==4.10.0.84
+# [修改] opencv-python-headless 锁定到与 opencv-python 同版本，兼容 numpy 1.x
+opencv-python-headless==4.10.0.84
+imageio==2.36.0
+scikit-image==0.24.0
+# [修改] tifffile 降级到 2024.x，兼容 numpy 1.x
+tifffile==2024.12.12
+rembg==2.0.65
+realesrgan==0.3.0
+# [修改] tb_nightly 不可用，使用 tensorboard 正式版代替
+tensorboard
+# tb_nightly==2.18.0a20240726
+basicsr==1.4.2
+
+# 3D Mesh Processing
+trimesh==4.4.7
+# [修改] pymeshlab 2022.2.post3 不支持 Python 3.12，使用最新版
+pymeshlab
+pygltflib==1.16.3
+xatlas==0.0.9
+# [修改] open3d 0.18.0 不支持 Python 3.12，升级到 0.19.0
+open3d==0.19.0
+
+# Configuration Management
+omegaconf==2.3.0
+pyyaml==6.0.2
+configargparse==1.7
+
+# Web Framework (for demo)
+gradio==5.33.0
+fastapi==0.115.12
+uvicorn==0.34.3
+
+# Utilities
+tqdm==4.66.5
+psutil==6.0.0
+
+# GPU Computing (ROCm 环境)
+# [修改] 原 cupy-cuda12x 是 CUDA 专用，ROCm 环境下不适用
+# 如需 cupy，请根据 ROCm 版本手动安装，例如:
+# pip install cupy-rocm-7x
+
+# Blender (可选)
+# [注意] bpy==4.0 在 PyPI 上无预编译包，需从源码构建或使用 Blender 自带 Python
+# bpy==4.0
+
+# ONNX Runtime
+# [修改] 原 onnxruntime==1.16.3 不支持 Python 3.12，升级到 1.19.2
+onnxruntime==1.19.2
+torchmetrics==1.6.0
+
+pydantic==2.10.6
+
+timm
+pythreejs
+torchdiffeq
+deepspeed
+
+# basicsr / realesrgan 补充依赖
+addict
+future
+lmdb
+facexlib
+yapf
+# gfpgan 需从源码构建，PyPI 无可用 wheel
+# gfpgan
